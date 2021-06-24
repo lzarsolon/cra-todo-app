@@ -154,9 +154,9 @@ export const DeleteBtn = ({ id, onDelete }) => {
   );
 };
 
-export const EditBtn = ({ onEdit }) => {
+export const EditBtn = ({ setEdit, task }) => {
   return (
-    <button type="button" onClick={() => onEdit()}>
+    <button type="button" onClick={() => setEdit(task)}>
       <svg width="24" height="24">
         <g fill="none" fillRule="evenodd">
           <path

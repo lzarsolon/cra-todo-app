@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { SolidBtn, CancelBtn } from "./Buttons";
+import { Task } from "./Task";
 
-export const TaskForm = ({ onAdd, onCancel }) => {
-  const [input, setInput] = useState("");
+export function TaskForm(props) {
+  const [input, setInput] = useState(props.edit ? props.edit?.text : "");
 
   const onChange = (e) => {
     setInput(e.target.value);
@@ -11,7 +12,12 @@ export const TaskForm = ({ onAdd, onCancel }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    onAdd({ id: Math.floor(Math.random() * 10000), text: input });
+    if (props.edit) {
+      props.onAdd({ id: props.edit?.id, text: input });
+    } else {
+      props.onAdd({ id: Math.floor(Math.random() * 10000), text: input });
+    }
+
     setInput("");
   };
 
@@ -25,20 +31,13 @@ export const TaskForm = ({ onAdd, onCancel }) => {
           onChange={onChange}
         />
         <div className="edit_actions">
-          <SolidBtn label="Add Task" onAdd={onSubmit} />
-          <CancelBtn onCancel={onCancel} />
+          <SolidBtn label={props.edit ? "Save" : "Add Task"} />
+          <CancelBtn onCancel={props.onCancel} />
         </div>
       </Form>
-      {/* <Form>
-        <Input type="text" />
-        <div className="edit_actions">
-          <SolidBtn label="Save" />
-          <CancelBtn />
-        </div>
-      </Form> */}
     </>
   );
-};
+}
 
 const Form = styled.form`
   padding: 4px 0 !important;

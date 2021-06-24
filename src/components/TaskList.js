@@ -23,18 +23,29 @@ export const TaskList = () => {
 
   const deleteTask = (id) => {
     const newTasks = [...tasks].filter((task) => task.id !== id);
-
     setTasks(newTasks);
   };
 
-  const editTask = () => {};
+  const editTask = (task) => {
+    const updatedTasks = [...tasks].map((t) =>
+      t.id === task.id
+        ? { id: t.id, text: task.text }
+        : { id: t.id, text: t.text }
+    );
+    setTasks(updatedTasks);
+  };
 
   return (
     <div className="list-holder">
       <TaskItems>
         {tasks.map((task) => (
           <Item key={task.id}>
-            <Task task={task} onEdit={editTask} onDelete={deleteTask} />
+            <Task
+              task={task}
+              onEdit={editTask}
+              onDelete={deleteTask}
+              onCancel={onClickCancel}
+            />
           </Item>
         ))}
         <Item>
