@@ -4,10 +4,8 @@ import { AddBtn } from "./Buttons";
 import { TaskForm } from "./TaskForm";
 import styled from "styled-components";
 
-export const TaskList = () => {
+export const TaskList = (props) => {
   const [toAdd, setToAdd] = useState(false);
-  const [tasks, setTasks] = useState([]);
-
   const onClickAdd = () => {
     setToAdd(true);
   };
@@ -16,35 +14,17 @@ export const TaskList = () => {
     setToAdd(false);
   };
 
-  const addTask = (task) => {
-    const newTasks = [...tasks, task];
-    setTasks(newTasks);
-  };
-
-  const deleteTask = (id) => {
-    const newTasks = [...tasks].filter((task) => task.id !== id);
-    setTasks(newTasks);
-  };
-
-  const editTask = (task) => {
-    const updatedTasks = [...tasks].map((t) =>
-      t.id === task.id
-        ? { id: t.id, text: task.text }
-        : { id: t.id, text: t.text }
-    );
-    setTasks(updatedTasks);
-  };
-
   return (
-    <div className="list-holder">
+    <>
       <TaskItems>
-        {tasks.map((task) => (
+        {props.tasks.map((task) => (
           <Item key={task.id}>
             <Task
               task={task}
-              onEdit={editTask}
-              onDelete={deleteTask}
+              onEdit={props.edit}
+              onDelete={props.delete}
               onCancel={onClickCancel}
+              onComplete={props.complete}
             />
           </Item>
         ))}
@@ -52,11 +32,11 @@ export const TaskList = () => {
           {!toAdd ? (
             <AddBtn addTask={onClickAdd} />
           ) : (
-            <TaskForm onCancel={onClickCancel} onAdd={addTask} />
+            <TaskForm onCancel={onClickCancel} onAdd={props.add} />
           )}
         </Item>
       </TaskItems>
-    </div>
+    </>
   );
 };
 

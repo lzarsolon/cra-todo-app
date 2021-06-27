@@ -1,19 +1,8 @@
 import "./App.css";
-import { Header } from "./components/Header";
-import { TaskList } from "./components/TaskList";
+import { TodoApp } from "./components/TodoApp";
 
 function App() {
-  return (
-    <>
-      <div className="top-bar"></div>
-      <div className="todo-app">
-        <Header />
-        <div className="content">
-          <TaskList />
-        </div>
-      </div>
-    </>
-  );
+  return <TodoApp />;
 }
 
 export default App;

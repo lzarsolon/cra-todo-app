@@ -31,7 +31,7 @@ export function TaskForm(props) {
           onChange={onChange}
         />
         <div className="edit_actions">
-          <SolidBtn label={props.edit ? "Save" : "Add Task"} />
+          <SolidBtn input={input} label={props.edit ? "Save" : "Add Task"} />
           <CancelBtn onCancel={props.onCancel} />
         </div>
       </Form>

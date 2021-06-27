@@ -1,15 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 
-export const Header = () => {
+export const Header = ({ label, showDate }) => {
   const date = new Date();
   const today = date.toDateString();
 
   return (
     <Div>
       <H1>
-        <Title>Today</Title>
-        <DateToday>{today}</DateToday>
+        <Title>{label}</Title>
+        {showDate ? <DateToday>{today}</DateToday> : <></>}
       </H1>
     </Div>
   );

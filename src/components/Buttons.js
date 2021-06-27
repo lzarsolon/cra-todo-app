@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-export const SolidBtn = ({ label }) => {
+export const SolidBtn = ({ label, input }) => {
   return (
-    <SolidButton type="submit" aria-disabled="true">
+    <SolidButton disabled={!input} type="submit" aria-disabled="true">
       {label}
     </SolidButton>
   );
@@ -83,10 +83,21 @@ export const Plus = () => {
   );
 };
 
-export const CompleteBtn = () => {
+export const CompleteBtn = ({ onComplete, task }) => {
+  function toGrey(e) {
+    e.target.style.background = "#D3D3D3";
+  }
+
+  function toTransparent(e) {
+    e.target.style.background = "transparent";
+  }
   return (
-    <Checkbox type="button">
-      <Circle></Circle>
+    <Checkbox
+      type="button"
+      className="complete-btn"
+      onClick={() => onComplete(task.id)}
+    >
+      <Circle onMouseOver={toGrey} onMouseLeave={toTransparent} />
     </Checkbox>
   );
 };
@@ -104,6 +115,10 @@ const Circle = styled.div`
   border-color: grey;
   color: grey;
   border-radius: 50%;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Check = () => {
@@ -126,7 +141,7 @@ const Svg = styled.svg`
   transition: opacity 0.15s cubic-bezier(0.4, 0, 1, 1);
   margin-top: -8px;
   pointer-events: none;
-  opacity: 0;
+  //opacity: 0;
 `;
 
 export const DeleteBtn = ({ id, onDelete }) => {

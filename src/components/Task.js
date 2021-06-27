@@ -3,7 +3,7 @@ import { CompleteBtn, EditBtn, DeleteBtn } from "./Buttons";
 import styled from "styled-components";
 import { TaskForm } from "./TaskForm";
 
-export const Task = ({ task, onEdit, onDelete, onCancel }) => {
+export const Task = ({ task, onEdit, onDelete, onCancel, onComplete }) => {
   const [editTask, setEditTask] = useState(null);
 
   const onEditTask = (editedTask) => {
@@ -20,6 +20,11 @@ export const Task = ({ task, onEdit, onDelete, onCancel }) => {
     setEditTask(task);
   };
 
+  // const onCompleteTask = (id) => {
+  //   onDelete(id);
+  //   onComplete(id);
+  // };
+
   if (editTask) {
     return (
       <TaskForm edit={editTask} onAdd={onEditTask} onCancel={onClickCancel} />
@@ -28,7 +33,7 @@ export const Task = ({ task, onEdit, onDelete, onCancel }) => {
 
   return (
     <Item>
-      <CompleteBtn />
+      <CompleteBtn onComplete={onComplete} task={task} />
       <Text>{task.text}</Text>
       <Actions>
         <EditBtn setEdit={setEdit} task={task} />
