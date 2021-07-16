@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { SolidBtn, CancelBtn } from "./Buttons";
-import { Task } from "./Task";
 
 export function TaskForm(props) {
   const [input, setInput] = useState(props.edit ? props.edit?.text : "");

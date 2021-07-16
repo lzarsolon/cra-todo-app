@@ -9,7 +9,7 @@ export const Header = ({ label, showDate }) => {
     <Div>
       <H1>
         <Title>{label}</Title>
-        {showDate ? <DateToday>{today}</DateToday> : <></>}
+        {showDate && <DateToday>{today}</DateToday>}
       </H1>
     </Div>
   );

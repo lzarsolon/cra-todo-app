@@ -20,11 +20,6 @@ export const Task = ({ task, onEdit, onDelete, onCancel, onComplete }) => {
     setEditTask(task);
   };
 
-  // const onCompleteTask = (id) => {
-  //   onDelete(id);
-  //   onComplete(id);
-  // };
-
   if (editTask) {
     return (
       <TaskForm edit={editTask} onAdd={onEditTask} onCancel={onClickCancel} />

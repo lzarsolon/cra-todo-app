@@ -33,14 +33,6 @@ export const TodoApp = () => {
     deleteTask(id);
   };
 
-  const taskLisProps = {
-    tasks: tasks,
-    add: addTask,
-    edit: editTask,
-    complete: completeTask,
-    delete: deleteTask,
-  };
-
   return (
     <>
       <div className="navbar"></div>
