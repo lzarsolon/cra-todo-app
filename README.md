@@ -1,6 +1,7 @@
 # Simple Todo App using Create React App
 
-This project is made for the purpose of learning React and is developed with the following: \
+This project is purely frontend and is made for the purpose of learning React. \
+It is developed with the following:
 
 * [Styled-Components](https://styled-components.com/)
 * React Hooks
